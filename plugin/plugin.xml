@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PluginDescriptor>
+	<JavaPlugin>
+		<interfaceClass>org.bimserver.plugins.services.ServicePlugin</interfaceClass>
+		<implementationClass>org.opensourcebim.bimrestore.BimBotDemoService</implementationClass>
+		<name>Ifc Object collection for analysis</name>
+		<description>Returns a Json dataset that can easily be represented in COTS analysis tools</description>
+	</JavaPlugin>
+	<JavaPlugin>
+		<interfaceClass>org.bimserver.plugins.services.ServicePlugin</interfaceClass>
+		<implementationClass>org.opensourcebim.bimrestore.IfcToSearchRequestService</implementationClass>
+		<name>Collect and aggregate components and materials</name>
+		<description>Returns a Json dataset that can easily be represented in the ReStore client</description>
+	</JavaPlugin>
+</PluginDescriptor>
