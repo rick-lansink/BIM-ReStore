@@ -328,11 +328,16 @@ public class ObjectStoreImpl implements ObjectStore {
 				}).distinct();
 	}
 	
-	public List<RootMaterial> getAllRootMaterials() {
+	@Override
+	public Map<String, RootMaterial> getAllRootMaterials() {
 		List<RootMaterial> rootMaterials = new ArrayList<RootMaterial>();
-		
-		return rootMaterials;
-		
+		RootMaterialStore materialStore = new RootMaterialStore();
+		for(ReStoreObject object : this.getObjects()) {
+			materialStore.addMaterialsByObject(
+					object, object.getListedMaterials()
+			);
+		}
+		return materialStore.getRootMaterials();
 	}
 
 	@Override

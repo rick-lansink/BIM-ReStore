@@ -75,4 +75,6 @@ public interface ObjectStore {
 	String getProjectId();
 
 	List<Double[]> getDimensionsOfElementGroup(List<ReStoreElement> elementList);
+
+	Map<String, RootMaterial> getAllRootMaterials();
 }

@@ -1,6 +1,7 @@
 package org.opensourcebim.ifccollection;
 
 import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -8,12 +9,15 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import org.eclipse.emf.common.util.BasicEList;
+import org.apache.commons.lang3.StringUtils;
 
 public class RootMaterial {
 
 	public RootMaterial(String oid, String name) {
 		this.setOid(oid);
 		this.setName(name);
+		this.setUsedObjects(new BasicEList<ReStoreObject>());
 	}
 	
 	private String oid;
@@ -33,7 +37,6 @@ public class RootMaterial {
 	}
 	
 	
-	
 	public String getName() {
 		return name;
 	}
@@ -42,6 +45,9 @@ public class RootMaterial {
 		this.name = name;
 	}
 	
+	private void setUsedObjects(List<ReStoreObject> reStoreObjects) {
+		this.usedByObjects = reStoreObjects;
+	}
 	
 	public List<ReStoreObject> getUsedByObjects() {
 		return usedByObjects;
@@ -53,7 +59,7 @@ public class RootMaterial {
 	}
 	
 	public void addUsedByObject(ReStoreObject object) {
-		this.usedByObjects.add(object);
+		this.getUsedByObjects().add(object);
 	}
 	
 	

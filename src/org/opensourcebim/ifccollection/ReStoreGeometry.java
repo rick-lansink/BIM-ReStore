@@ -74,7 +74,7 @@ public class ReStoreGeometry {
 		this.principalDimensions = new Double[] {x_dir, y_dir, z_dir};
 		this.sortedDims = new Double[] {x_dir, y_dir, z_dir};
 		this.roundedDims = new Double[] {
-				round(x_dir, 2), round(y_dir, 2), round(z_dir, 2)
+				round(x_dir, 4), round(y_dir, 4), round(z_dir, 4)
 		};
 		Arrays.sort(sortedDims, Collections.reverseOrder());
 		Arrays.sort(roundedDims, Collections.reverseOrder());

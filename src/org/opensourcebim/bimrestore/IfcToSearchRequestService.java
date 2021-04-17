@@ -7,6 +7,7 @@ import org.bimserver.bimbots.BimBotsOutput;
 import org.bimserver.plugins.PluginConfiguration;
 import org.opensourcebim.ifcanalysis.GuidDataSet;
 import org.opensourcebim.ifcanalysis.GuidDataSetGroupedElements;
+import org.opensourcebim.ifcanalysis.GuidDataSetRootMaterials;
 import org.opensourcebim.ifccollection.ReStoreIfcObjectCollector;
 
 
@@ -21,7 +22,8 @@ public class IfcToSearchRequestService extends IfcObjectCollectionBaseService {
 		this.setStore(matParser.collectIfcModelObjects(input, bimBotContext.getContextId()));
 		
 		//GuidDataSet dataset = new GuidDataSet(this.getStore());
-		GuidDataSetGroupedElements dataset = new GuidDataSetGroupedElements(this.getStore());
+		//GuidDataSetGroupedElements dataset = new GuidDataSetGroupedElements(this.getStore());
+		GuidDataSetRootMaterials dataset = new GuidDataSetRootMaterials(this.getStore());
 		return this.toBimBotsJsonOutput(dataset, "guid property dataset results");
 	}
 
