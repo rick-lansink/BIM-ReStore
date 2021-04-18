@@ -37,10 +37,12 @@ public class GuidDataSetRootMaterials {
 			}
 
 			this.addRecord(key);
-			this.setRecordValue(key, "oid", key);
-			this.setRecordValue(key, "materialName", material.getName());
+			this.setRecordValue(key, "materialName", key);
+			this.setRecordValue(key, "oid", material.getOid());
+			this.setRecordValue(key, "volume", material.getTotalVolume());
+			this.setRecordValue(key, "surfaceArea", material.getTotalSurfaceArea());
 			this.setRecordValue(key, "usedByQuantity", material.getUsedByObjects().size());
-			this.setRecordValue(key,  "usedByGuids", material.getUsedByObjectsGuid());
+			this.setRecordValue(key,  "usedBy", material.getObjectSummary());
 
 		}
 

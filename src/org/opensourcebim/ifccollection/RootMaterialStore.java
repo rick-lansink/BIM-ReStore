@@ -32,17 +32,16 @@ public class RootMaterialStore {
 		for(MaterialSource material : listedMaterials) {
 			this.addRootMaterial(material, parentObject);
 		}
-		
 	}
 	
 	public void addRootMaterial(MaterialSource rootMaterial, ReStoreObject parentObject) {
-		if(rootMaterials.containsKey(rootMaterial.getOid())) {
-			RootMaterial existingMaterial = rootMaterials.get(rootMaterial.getOid());
+		if(rootMaterials.containsKey(rootMaterial.getName())) {
+			RootMaterial existingMaterial = rootMaterials.get(rootMaterial.getName());
 			existingMaterial.addUsedByObject(parentObject);
 		} else {
 			RootMaterial newMaterial = new RootMaterial(rootMaterial.getOid(), rootMaterial.getName());
 			newMaterial.addUsedByObject(parentObject);
-			this.getRootMaterials().putIfAbsent(newMaterial.getOid(), newMaterial);
+			this.getRootMaterials().putIfAbsent(newMaterial.getName(), newMaterial);
 		}
 		
 	}

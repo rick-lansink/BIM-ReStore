@@ -81,8 +81,8 @@ public class ReStoreGeometryParser {
 					double y_dir = this.convertLength(bounds.getMax().getY() - bounds.getMin().getY());
 					double z_dir = this.convertLength(bounds.getMax().getZ() - bounds.getMin().getZ());
 					
-					//double largest_face_area = geomData.get("LARGEST_FACE_AREA").asDouble();
-										
+					double largest_face_area = geomData.get("LARGEST_FACE_AREA").asDouble();
+					geom.setLargestFaceArea(largest_face_area);
 					geom.setFloorArea(this.convertArea(geomData.get("SURFACE_AREA_ALONG_Z").asDouble()));
 					geom.setDimensions(x_dir, y_dir, z_dir);
 				}

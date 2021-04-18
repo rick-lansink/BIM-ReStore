@@ -58,8 +58,19 @@ public class RootMaterial {
 				.collect(Collectors.toList());
 	}
 	
+	public List<ObjectSummary> getObjectSummary () {
+		return usedByObjects.stream().map(o -> new ObjectSummary(o))
+				.collect(Collectors.toList());
+	}
+	
 	public void addUsedByObject(ReStoreObject object) {
 		this.getUsedByObjects().add(object);
+		this.addSurfaceArea(
+			object.getGeometry().getLargestFaceArea()
+		);
+		this.addVolume(
+			object.getGeometry().getVolume()
+		);
 	}
 	
 	
@@ -72,7 +83,7 @@ public class RootMaterial {
 	}
 	
 	public void addSurfaceArea(double surfaceArea) {
-		this.totalSurfaceArea += surfaceArea;
+		this.totalSurfaceArea = Double.sum(this.totalSurfaceArea, surfaceArea);
 	}
 	
 	
@@ -85,7 +96,7 @@ public class RootMaterial {
 	}
 	
 	public void addVolume(double volume) {
-		this.totalVolume += volume;
+		this.totalVolume = Double.sum(this.totalVolume, volume);
 	}
 	
 }

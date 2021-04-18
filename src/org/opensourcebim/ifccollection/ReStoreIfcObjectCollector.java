@@ -123,8 +123,8 @@ public class ReStoreIfcObjectCollector {
 
 			// ignore any elements that are irrelevant for the mpg calculations
 			if (!this.ignoredProducts.contains(product.getClass())) {
-
-				if (StringUtils.isBlank(product.getGlobalId())) {
+				// Skip items with empty global id or name as these (may) result in incorrect calculations of face areas and volumes
+				if (StringUtils.isBlank(product.getGlobalId()) || StringUtils.isBlank(product.getName())) {
 					continue;
 				}
 

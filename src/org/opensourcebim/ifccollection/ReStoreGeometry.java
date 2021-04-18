@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class ReStoreGeometry {
 	private double volume;
 	private double floorArea;
+	private double largestFaceArea;
 
 	private Boolean isComplete;
 	
@@ -19,7 +20,7 @@ public class ReStoreGeometry {
 	public ReStoreGeometry() {
 		volume = Double.NaN;
 		floorArea = Double.NaN;
-
+		
 		setIsComplete(false);
 	}
 
@@ -38,10 +39,23 @@ public class ReStoreGeometry {
 	public void setFloorArea(Double floorArea) {
 		this.floorArea = floorArea;
 	}
+	
+	public double getLargestFaceArea() {
+		return largestFaceArea;
+	}
+	
+	public void setLargestFaceArea(Double faceArea) {
+		this.largestFaceArea = faceArea;
+	}
 
 	@JsonIgnore
 	public Double getFaceArea() {
-		return this.sortedDims[0] * this.sortedDims[1];
+		if (this.sortedDims != null && this.sortedDims.length > 2) {
+			return this.sortedDims[0] * this.sortedDims[1];
+		} else {
+			return 0.0;
+		}
+		
 	}
 
 	// return the largest axis
