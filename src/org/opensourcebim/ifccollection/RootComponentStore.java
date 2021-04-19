@@ -30,7 +30,11 @@ public class RootComponentStore {
 	public void addRootComponent(String rootComponent, List<ReStoreElement> containedObjects) {
 		if(rootComponents.containsKey(rootComponent)) {
 			RootComponent existingComponent = rootComponents.get(rootComponent);
-			//existingComponent.addUsedByObjects(containedObjects);
+			existingComponent.elementListToDimensionSet(containedObjects);
+		} else {
+			RootComponent newComponent = new RootComponent(rootComponent);
+			newComponent.elementListToDimensionSet(containedObjects);
+			this.getRootComponents().putIfAbsent(rootComponent, newComponent);
 		}
 	}
 	

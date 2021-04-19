@@ -14,16 +14,16 @@ import org.eclipse.emf.common.util.BasicEList;
 
 public class RootComponent {
 	
-	public RootComponent(String valueHash, List<ReStoreElement> containedElements) {
+	public RootComponent(String valueHash) {
 		this.setValueHash(valueHash);
-		//this.setUsedByObjects(new BasicEList<ReStoreObject>());
+		this.setDimensionSets(new BasicEList<DimensionSet>());
 	}
 
 	private String valueHash;
 	private double totalSurfaceArea;
 	private double totalVolume;
 	
-	private Map<String, List<DimensionSet>> dimensionSets;
+	private List<DimensionSet> dimensionSets;
 	
 	public String getValueHash() {
 		return valueHash;
@@ -50,15 +50,26 @@ public class RootComponent {
 				dimensionGroup.getKey(),
 				dimensionGroup.getValue()
 			);
-			//this.addDimensionSet(dimensionSet.getDimensionHash(), dimensionSet);
+			this.addDimensionSet(dimensionSet);
 		}
 		
 	}
 	
-//	public void addDimensionSet(String dimensionHash, DimensionSet dSet) {
-//		this.dimensionSets.put(valueHash, null)
-//		
-//	}
+	public List<DimensionSet> getDimensionSets() {
+		return this.dimensionSets;
+	}
+	
+	public List<String> getDimensionSetsStringList() {
+		return this.dimensionSets.stream().map(d -> d.getDimensionHash()).collect(Collectors.toList());
+	}
+	
+	public void setDimensionSets(List<DimensionSet> dSets) {
+		this.dimensionSets = dSets;
+	}
+	
+	public void addDimensionSet(DimensionSet dSet) {
+		this.dimensionSets.add(dSet);
+	}
 	
 	public static List<ReStoreObject> elementListToObjectList(List<ReStoreElement> elements) {
 		return elements.stream()

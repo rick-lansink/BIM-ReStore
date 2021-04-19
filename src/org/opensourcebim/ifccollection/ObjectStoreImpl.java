@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -338,6 +339,16 @@ public class ObjectStoreImpl implements ObjectStore {
 			);
 		}
 		return materialStore.getRootMaterials();
+	}
+	
+	@Override
+	public Map<String, RootComponent> getAllRootComponents() {
+		List<RootComponent> rootComponents = new ArrayList<RootComponent>();
+		RootComponentStore componentStore = new RootComponentStore();
+		for(Entry<String, List<ReStoreElement>> objectGroup : this.getCleanedElementGroups().entrySet()) {
+			componentStore.addRootComponent(objectGroup.getKey(), objectGroup.getValue());
+		}
+		return componentStore.getRootComponents();
 	}
 
 	@Override

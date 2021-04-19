@@ -77,4 +77,6 @@ public interface ObjectStore {
 	List<Double[]> getDimensionsOfElementGroup(List<ReStoreElement> elementList);
 
 	Map<String, RootMaterial> getAllRootMaterials();
+
+	Map<String, RootComponent> getAllRootComponents();
 }
