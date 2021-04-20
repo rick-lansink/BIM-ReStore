@@ -38,7 +38,7 @@ public class GuidDataSetRootComponents {
 
 			this.addRecord(key);
 			this.setRecordValue(key, "componentName", key);
-			this.setRecordValue(key, "dimensionSets", component.getDimensionSetsStringList());
+			this.setRecordValue(key, "dimensionSets", component.getDimensionSets());
 //			this.setRecordValue(key, "oid", component.getOid());
 //			this.setRecordValue(key, "volume", component.getTotalVolume());
 //			this.setRecordValue(key, "surfaceArea", component.getTotalSurfaceArea());

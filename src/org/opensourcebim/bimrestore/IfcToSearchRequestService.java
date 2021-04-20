@@ -24,8 +24,8 @@ public class IfcToSearchRequestService extends IfcObjectCollectionBaseService {
 		
 		//GuidDataSet dataset = new GuidDataSet(this.getStore());
 		//GuidDataSetGroupedElements dataset = new GuidDataSetGroupedElements(this.getStore());
-		//GuidDataSetRootMaterials dataset = new GuidDataSetRootMaterials(this.getStore());
-		GuidDataSetRootComponents dataset = new GuidDataSetRootComponents(this.getStore());
+		GuidDataSetRootMaterials dataset = new GuidDataSetRootMaterials(this.getStore());
+		//GuidDataSetRootComponents dataset = new GuidDataSetRootComponents(this.getStore());
 		return this.toBimBotsJsonOutput(dataset, "guid property dataset results");
 	}
 
