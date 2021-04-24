@@ -4,17 +4,17 @@ import java.util.HashMap;
 
 public class GuidPropertyRecord {
 		
-	private HashMap<String, Object> values;
+	private HashMap<String, Object> children;
 	
 	public GuidPropertyRecord() {
-		values = new HashMap<String, Object> ();
+		children = new HashMap<String, Object> ();
 	}
 	
 	public HashMap<String, Object> getValues() {
-		return values;
+		return children;
 	}
 
 	public void addOrSetColumn(String title, Object value) {
-		values.put(title, value);
+		children.put(title, value);
 	}
 }

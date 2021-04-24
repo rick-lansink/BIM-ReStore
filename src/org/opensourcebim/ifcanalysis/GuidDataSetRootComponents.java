@@ -28,8 +28,8 @@ public class GuidDataSetRootComponents {
 		records = new HashMap<String, GuidPropertyRecord>();
 		columnDefinitions = new HashSet<String>();
 		
-		for (Entry<String, RootComponent> map : (store.getAllRootComponents()).entrySet()) {
-			RootComponent component = map.getValue();
+		for (Entry<String, List<RootComponent>> map : (store.getAllRootComponentsByType()).entrySet()) {
+			List<RootComponent> componentList = map.getValue();
 			String key = map.getKey();
 
 			if(StringUtils.isBlank(key)) {
@@ -37,8 +37,8 @@ public class GuidDataSetRootComponents {
 			}
 
 			this.addRecord(key);
-			this.setRecordValue(key, "componentName", key);
-			this.setRecordValue(key, "dimensionSets", component.getDimensionSets());
+			this.setRecordValue(key, "type", key);
+			this.setRecordValue(key, "children", componentList);
 //			this.setRecordValue(key, "oid", component.getOid());
 //			this.setRecordValue(key, "volume", component.getTotalVolume());
 //			this.setRecordValue(key, "surfaceArea", component.getTotalSurfaceArea());

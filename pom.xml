@@ -8,7 +8,7 @@
 	</organization>
 	<groupId>org.opensourcebim</groupId>
 	<artifactId>ReStore</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>BIM ReStore</name>
 	<description>BIMServer plugin for aggregating BIM products and materials with the intent of generating search profiles for second hand materials</description>
 

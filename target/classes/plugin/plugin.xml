@@ -12,4 +12,10 @@
 		<name>Collect and aggregate components and materials</name>
 		<description>Returns a Json dataset that can easily be represented in the ReStore client</description>
 	</JavaPlugin>
+	<JavaPlugin>
+		<interfaceClass>org.bimserver.plugins.services.ServicePlugin</interfaceClass>
+		<implementationClass>org.opensourcebim.bimrestore.IfcToRootComponent</implementationClass>
+		<name>Collect root component by type based on their name, type and materials</name>
+		<description>Returns a Json dataset composed of root components, sorted by type and dimensions</description>
+	</JavaPlugin>
 </PluginDescriptor>

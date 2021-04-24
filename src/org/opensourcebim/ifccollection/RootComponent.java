@@ -20,10 +20,12 @@ public class RootComponent {
 	}
 
 	private String valueHash;
+	private String type;
+	private String name;
 	private double totalSurfaceArea;
 	private double totalVolume;
 	
-	private List<DimensionSet> dimensionSets;
+	private List<DimensionSet> children;
 	
 	public String getValueHash() {
 		return valueHash;
@@ -31,6 +33,14 @@ public class RootComponent {
 	
 	private void setValueHash(String valueHash) {
 		this.valueHash = valueHash;
+	}
+	
+	public String getComponentType() {
+		return type;
+	}
+	
+	public String getComponentName() {
+		return name;
 	}
 	
 	public double getTotalSurfaceArea() {
@@ -56,19 +66,28 @@ public class RootComponent {
 	}
 	
 	public List<DimensionSet> getDimensionSets() {
-		return this.dimensionSets;
+		return this.children;
 	}
 	
 	public List<String> getDimensionSetsStringList() {
-		return this.dimensionSets.stream().map(d -> d.getDimensionHash()).collect(Collectors.toList());
+		return this.children.stream().map(d -> d.getDimensionHash()).collect(Collectors.toList());
 	}
 	
 	public void setDimensionSets(List<DimensionSet> dSets) {
-		this.dimensionSets = dSets;
+		this.children = dSets;
 	}
 	
+	public void setComponentType(String type) {
+		this.type = type;
+	}
+	
+	public void setComponentName(String name) {
+		this.name = name;
+	}
+	
+	
 	public void addDimensionSet(DimensionSet dSet) {
-		this.dimensionSets.add(dSet);
+		this.children.add(dSet);
 	}
 	
 	public static List<ReStoreObject> elementListToObjectList(List<ReStoreElement> elements) {

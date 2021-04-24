@@ -18,7 +18,7 @@ public class DimensionSet {
 
 	private String dimensionSetHash;
 	
-	private List<ReStoreObject> usedByObjects;
+	private List<String> children;
 	
 	public String getDimensionHash() {
 		return dimensionSetHash;
@@ -28,11 +28,11 @@ public class DimensionSet {
 		this.dimensionSetHash = hash;
 	}
 	
-	public List<ReStoreObject> getUsedByObjects() {
-		return usedByObjects;
+	public List<String> getUsedByObjects() {
+		return children;
 	}
 	
 	private void setUsedByObjects(List<ReStoreObject> usedByObjects) {
-		this.usedByObjects = usedByObjects;
+		this.children = usedByObjects.stream().map(o -> o.getGlobalId()).collect(Collectors.toList());
 	}
 }

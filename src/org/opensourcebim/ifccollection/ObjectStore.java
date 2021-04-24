@@ -79,4 +79,8 @@ public interface ObjectStore {
 	Map<String, RootMaterial> getAllRootMaterials();
 
 	Map<String, RootComponent> getAllRootComponents();
+
+	RootComponentStore getRootComponentStore();
+
+	Map<String, List<RootComponent>> getAllRootComponentsByType();
 }

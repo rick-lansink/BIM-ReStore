@@ -340,15 +340,27 @@ public class ObjectStoreImpl implements ObjectStore {
 		}
 		return materialStore.getRootMaterials();
 	}
-	
-	@Override
-	public Map<String, RootComponent> getAllRootComponents() {
+
+	@Override 
+	public RootComponentStore getRootComponentStore() {
 		List<RootComponent> rootComponents = new ArrayList<RootComponent>();
 		RootComponentStore componentStore = new RootComponentStore();
 		for(Entry<String, List<ReStoreElement>> objectGroup : this.getCleanedElementGroups().entrySet()) {
 			componentStore.addRootComponent(objectGroup.getKey(), objectGroup.getValue());
 		}
+		return componentStore;
+	}
+	 
+	@Override
+	public Map<String, RootComponent> getAllRootComponents() {
+		RootComponentStore componentStore = this.getRootComponentStore();
 		return componentStore.getRootComponents();
+	}
+	
+	@Override
+	public Map<String, List<RootComponent>> getAllRootComponentsByType() {
+		RootComponentStore componentStore = this.getRootComponentStore();
+		return componentStore.getRootComponentsByType(); 
 	}
 
 	@Override
