@@ -24,7 +24,7 @@ public class RootComponent {
 	private String name;
 	private double totalSurfaceArea;
 	private double totalVolume;
-	
+	private Map<String, List<Object>> inheritedProperties;
 	private List<DimensionSet> children;
 	
 	public String getValueHash() {
@@ -51,8 +51,13 @@ public class RootComponent {
 		return totalVolume;
 	}
 	
+	public Map<String, List<Object>> getInheritedProperties() {
+		return this.inheritedProperties;
+	}
+	
 	public void elementListToDimensionSet(List<ReStoreElement> elements) {
 		List<ReStoreObject> convertedObjects = RootComponent.elementListToObjectList(elements);
+		//this.addPropertySetsFromObjects(convertedObjects);
 		Map<String, List<ReStoreObject>> groupedObjects = RootComponent.objectsGroupedByDimensions(convertedObjects);
 		
 		for(Entry<String, List<ReStoreObject>> dimensionGroup : groupedObjects.entrySet()) {
@@ -63,6 +68,20 @@ public class RootComponent {
 			this.addDimensionSet(dimensionSet);
 		}
 		
+	}
+	
+	public void addPropertySetsFromObjects(List<ReStoreObject> objects) {
+		for(ReStoreObject object : objects) {
+			Map<String, Object> properties = object.getProperties();
+			for(Entry<String, Object> property : properties.entrySet()) {
+				if (this.inheritedProperties.containsKey(property.getKey())) {
+					this.inheritedProperties.get(property.getKey()).add(property.getValue());
+				} else {
+					this.inheritedProperties.putIfAbsent(property.getKey(), new ArrayList<Object>());
+					this.inheritedProperties.get(property.getKey()).add(property.getValue());
+				}
+			}
+		}
 	}
 	
 	public List<DimensionSet> getDimensionSets() {
