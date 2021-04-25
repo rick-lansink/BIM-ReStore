@@ -17,6 +17,7 @@ public class RootComponent {
 	public RootComponent(String valueHash) {
 		this.setValueHash(valueHash);
 		this.setDimensionSets(new BasicEList<DimensionSet>());
+		this.inheritedProperties = new HashMap<String, List<Object>>();
 	}
 
 	private String valueHash;
@@ -57,7 +58,7 @@ public class RootComponent {
 	
 	public void elementListToDimensionSet(List<ReStoreElement> elements) {
 		List<ReStoreObject> convertedObjects = RootComponent.elementListToObjectList(elements);
-		//this.addPropertySetsFromObjects(convertedObjects);
+		this.addPropertySetsFromObjects(convertedObjects);
 		Map<String, List<ReStoreObject>> groupedObjects = RootComponent.objectsGroupedByDimensions(convertedObjects);
 		
 		for(Entry<String, List<ReStoreObject>> dimensionGroup : groupedObjects.entrySet()) {
@@ -75,7 +76,10 @@ public class RootComponent {
 			Map<String, Object> properties = object.getProperties();
 			for(Entry<String, Object> property : properties.entrySet()) {
 				if (this.inheritedProperties.containsKey(property.getKey())) {
-					this.inheritedProperties.get(property.getKey()).add(property.getValue());
+					List<Object> setProperties = this.inheritedProperties.get(property.getKey());
+					if(!setProperties.contains(property.getValue())) {
+						this.inheritedProperties.get(property.getKey()).add(property.getValue());
+					}
 				} else {
 					this.inheritedProperties.putIfAbsent(property.getKey(), new ArrayList<Object>());
 					this.inheritedProperties.get(property.getKey()).add(property.getValue());
