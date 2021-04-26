@@ -18,4 +18,10 @@
 		<name>Collect root component by type based on their name, type and materials</name>
 		<description>Returns a Json dataset composed of root components, sorted by type and dimensions</description>
 	</JavaPlugin>
+	<JavaPlugin>
+		<interfaceClass>org.bimserver.plugins.services.ServicePlugin</interfaceClass>
+		<implementationClass>org.opensourcebim.bimrestore.IfcToRootMaterial</implementationClass>
+		<name>Collect root materials</name>
+		<description>Returns a Json dataset composed of root materials</description>
+	</JavaPlugin>
 </PluginDescriptor>

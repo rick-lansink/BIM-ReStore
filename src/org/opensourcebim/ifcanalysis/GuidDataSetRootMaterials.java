@@ -40,12 +40,11 @@ public class GuidDataSetRootMaterials {
 			this.setRecordValue(key, "materialName", key);
 			this.setRecordValue(key, "oid", material.getOid());
 			this.setRecordValue(key, "volume", material.getTotalVolume());
+			this.setRecordValue(key, "properties", material.getInheritedProperties());
 			this.setRecordValue(key, "surfaceArea", material.getTotalSurfaceArea());
 			this.setRecordValue(key, "usedByQuantity", material.getUsedByObjects().size());
 			this.setRecordValue(key,  "usedBy", material.getObjectSummary());
-
 		}
-
 	}
 	
 	public HashMap<String, GuidPropertyRecord> getRecords() {
