@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Map.Entry;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.eclipse.emf.common.util.BasicEList;
@@ -19,13 +18,11 @@ public class RootMaterial {
 		this.setOid(oid);
 		this.setName(name);
 		this.setUsedObjects(new BasicEList<ReStoreObject>());
-		this.inheritedProperties = new HashMap<String, List<Object>>();
 	}
 	
 	private String oid;
 	private String name;
 	private double totalSurfaceArea;
-	private Map<String, List<Object>> inheritedProperties;
 	private double totalVolume;
 	
 	private List<ReStoreObject> usedByObjects;
@@ -48,10 +45,6 @@ public class RootMaterial {
 		this.name = name;
 	}
 	
-	public Map<String, List<Object>> getInheritedProperties() {
-		return this.inheritedProperties;
-	}
-	
 	private void setUsedObjects(List<ReStoreObject> reStoreObjects) {
 		this.usedByObjects = reStoreObjects;
 	}
@@ -70,8 +63,6 @@ public class RootMaterial {
 				.collect(Collectors.toList());
 	}
 	
-	
-	
 	public void addUsedByObject(ReStoreObject object) {
 		this.getUsedByObjects().add(object);
 		this.addSurfaceArea(
@@ -80,22 +71,6 @@ public class RootMaterial {
 		this.addVolume(
 			object.getGeometry().getVolume()
 		);
-		this.addPropertySetsFromObject(object);
-	}
-	
-	public void addPropertySetsFromObject(ReStoreObject object) {
-		Map<String, Object> properties = object.getProperties();
-		for(Entry<String, Object> property : properties.entrySet()) {
-			if (this.inheritedProperties.containsKey(property.getKey())) {
-				List<Object> setProperties = this.inheritedProperties.get(property.getKey());
-				if(!setProperties.contains(property.getValue())) {
-					this.inheritedProperties.get(property.getKey()).add(property.getValue());
-				}
-			} else {
-				this.inheritedProperties.putIfAbsent(property.getKey(), new ArrayList<Object>());
-				this.inheritedProperties.get(property.getKey()).add(property.getValue());
-			}
-		}
 	}
 	
 	

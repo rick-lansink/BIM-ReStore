@@ -26,7 +26,7 @@ public class IfcToSearchRequestService extends IfcObjectCollectionBaseService {
 		//GuidDataSetGroupedElements dataset = new GuidDataSetGroupedElements(this.getStore());
 		GuidDataSetRootMaterials dataset = new GuidDataSetRootMaterials(this.getStore());
 		//GuidDataSetRootComponents dataset = new GuidDataSetRootComponents(this.getStore());
-		return this.toBimBotsJsonOutput(dataset, "Root materials dataset results");
+		return this.toBimBotsJsonOutput(dataset, "root materials dataset results");
 	}
 
 	@Override
