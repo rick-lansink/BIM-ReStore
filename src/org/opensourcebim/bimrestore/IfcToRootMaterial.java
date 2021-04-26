@@ -12,7 +12,7 @@ import org.opensourcebim.ifcanalysis.GuidDataSetRootComponents;
 import org.opensourcebim.ifccollection.ReStoreIfcObjectCollector;
 
 
-public class IfcToSearchRequestService extends IfcObjectCollectionBaseService {
+public class IfcToRootMaterial extends IfcObjectCollectionBaseService {
 	
 	@Override
 	public BimBotsOutput runBimBot(BimBotsInput input, BimBotContext bimBotContext, PluginConfiguration pluginConfiguration)
@@ -31,7 +31,7 @@ public class IfcToSearchRequestService extends IfcObjectCollectionBaseService {
 
 	@Override
 	public String getOutputSchema() {
-		return "ROOT_MATERIALS_DATASET_0_0_1";
+		return "ROOT_MATERIALS_DATASET_0_0_2";
 	}
 	
 }
