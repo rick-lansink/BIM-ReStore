@@ -289,7 +289,7 @@ public class ReStoreIfcObjectCollector {
 				}
 
 				if (value != null) {
-					reStoreObject.addProperty(name, value);
+					//reStoreObject.addProperty(name, value);
 				}
 			}
 		}
@@ -298,6 +298,7 @@ public class ReStoreIfcObjectCollector {
 	private void addPropertiesFromPropertySetDefinition(IfcPropertySet defs, ReStoreObjectImpl reStoreObject) {
 
 		for (IfcProperty prop : defs.getHasProperties()) {
+	
 			if (prop instanceof IfcPropertySingleValue) {
 				IfcPropertySingleValue valProp = (IfcPropertySingleValue) prop;
 				String name = valProp.getName().toLowerCase();
@@ -313,8 +314,8 @@ public class ReStoreIfcObjectCollector {
 					value = ((IfcIdentifier) ifcValue).getWrappedValue();
 				}
 
-				if (value != null) {
-					reStoreObject.addProperty(name, value);
+				if (value != null && defs.getName() != null && defs.getName() != "") {
+					reStoreObject.addProperty(defs.getName()+"__"+name, value);
 				}
 			}
 		}

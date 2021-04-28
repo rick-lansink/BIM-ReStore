@@ -55,6 +55,11 @@ public class RootMaterial {
 		return this.inheritedProperties;
 	}
 
+	public Map<String, List<Object>> getInheristedPropertiesNoDuplicate() {
+		return this.inheritedProperties.entrySet().stream()
+				.filter(o -> (o.getValue().size() == 1 && o.getValue().get(0) != ""))
+				.collect(Collectors.toMap(x -> x.getKey(), x -> x.getValue()));
+	}
 	
 	public List<ReStoreObject> getUsedByObjects() {
 		return usedByObjects;
