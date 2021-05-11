@@ -183,6 +183,6 @@ public class ReStoreObjectImpl implements ReStoreObject {
 	@Override
 	public String getValueHash() {
 		return this.getObjectName() + this.getObjectType()
-		+ String.join("-", this.getMaterialNamesBySource(null));
+		+ String.join("-", this.getMaterialNamesBySource(null).stream().sorted().collect(Collectors.toList()));
 	}
 }
